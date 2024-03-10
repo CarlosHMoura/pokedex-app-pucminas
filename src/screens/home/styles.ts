@@ -1,13 +1,14 @@
 import styled from "styled-components/native";
+import * as Animatable from "react-native-animatable";
 import theme from "../../theme";
-
 
 export const Container = styled.View`
   flex: 1;
 `;
 
 export const Header = styled.View`
-  background-color: ${() => theme.colors.bgColor};
+  background-color: ${() => theme.colors.white};
+  position: static;
   width: 100%;
   height: 300px;
   justify-content: flex-end;
@@ -15,25 +16,25 @@ export const Header = styled.View`
   padding-bottom: 20px;
 `;
 
-export const MainIcon = styled.Image`
+export const Body = styled.View`
+  background-color: ${() => theme.colors.red};
+  position: static;
+  align-items: center;
+  width: 100%;
+  height: 500px;
+  z-index: -1;
+`;
+
+export const MainIcon = styled(Animatable.Image)`
   z-index: -1;
   width: 100px;
   height: 100px;
 `;
 
 export const Title = styled.Text`
-  color: ${() => theme.colors.textColor};
+  color: ${() => theme.colors.black};
   font-size: 32px;
   font-weight: bold;
-`;
-
-export const User = styled.Image`
-  width: 50;
-  height: 50;
-  opacity: 0.7;
-  position: absolute;
-  left: 5;
-  top: 30;
 `;
 
 export const PokemonList = styled.FlatList`
