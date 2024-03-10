@@ -1,7 +1,9 @@
 import React from "react";
-import { TextInputProps } from "react-native"; 
+import { TextInputProps, View } from "react-native"; 
 
-import { Container } from "./styles";
+import { Container, SearchButton, SearchButtonIcon } from "./styles";
+
+import searchIcon from "../../assets/search-icon.png";
 
 export function Input({ ...rest }: TextInputProps) {
   
@@ -13,5 +15,12 @@ export function Input({ ...rest }: TextInputProps) {
     console.log('Enter pressed');
   };
 
-  return <Container onChangeText={handleInputChange} onSubmitEditing={handleSubmit} {...rest}></Container>;
+  return (
+    <View style={{ flexDirection: 'row' }}>
+      <Container onChangeText={handleInputChange} onSubmitEditing={handleSubmit} {...rest}></Container>
+      <SearchButton onPress={handleSubmit}>
+        <SearchButtonIcon source={searchIcon}></SearchButtonIcon>
+      </SearchButton>
+    </View>
+  );
 } 

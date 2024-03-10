@@ -24,7 +24,7 @@ export function Home() {
             ></MainIcon>
             <Title>Pokedex</Title>
             <Input placeholder="Pesquisar Pokemon..."></Input>
-            <Button onPress={() => console.log("PokemonList!")} title="Listar Pokémons" />
+            <Button onPress={() => console.log("PokemonList!")} title="Listar Todos os Pokémons" />
         </Header>
 
         

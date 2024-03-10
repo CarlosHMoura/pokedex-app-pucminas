@@ -9,8 +9,8 @@ export const Text = styled.Text`
 `;
 
 export const Container = styled(TouchableOpacity)`
-  background-color: ${() => theme.colors.red};
-  padding: 5px 10px;
+  background-color: ${() => theme.colors.lightBlue};
+  padding: 6px 12px;
   border-radius: 20px;
   margin: 10px;
 `;
