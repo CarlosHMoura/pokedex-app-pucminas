@@ -7,22 +7,12 @@ export const Container = styled.View`
 `;
 
 export const Header = styled.View`
-  background-color: ${() => theme.colors.white};
   position: static;
   width: 100%;
-  height: 300px;
+  height: 500px;
   justify-content: flex-end;
   align-items: center;
   padding-bottom: 20px;
-`;
-
-export const Body = styled.View`
-  background-color: ${() => theme.colors.red};
-  position: static;
-  align-items: center;
-  width: 100%;
-  height: 500px;
-  z-index: -1;
 `;
 
 export const MainIcon = styled(Animatable.Image)`

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Container, Header, Body,  MainIcon, Title } from "./styles";
+import { Container, Header, MainIcon, Title } from "./styles";
 import { Input } from "../../components/Inputs";
 import { UserButton } from "../../components/UserButton";
 import { Button } from "../../components/Button";
@@ -24,11 +24,12 @@ export function Home() {
             ></MainIcon>
             <Title>Pokedex</Title>
             <Input placeholder="Pesquisar Pokemon..."></Input>
+            <Button onPress={() => console.log("PokemonList!")} title="Listar Pokémons" />
         </Header>
 
-        <Body>
-            <Button onPress={() => console.log("PokemonList!")} title="Listar Pokémons" />
-        </Body>
+        
+        
+        
     </Container>
     );
 }
