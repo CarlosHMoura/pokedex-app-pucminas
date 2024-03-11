@@ -1,20 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { Home } from './src/screens/home';
-import { ThemeProvider } from "styled-components/native";
-import THEME from "../pokedex-app-pucminas/src/theme";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import AppNavigator from './src/navigation/AppNavigator';
 
 export default function App() {
   return (
-    <View>
-      <Home></Home>
-    </View>
+    <NavigationContainer>
+      <AppNavigator />
+    </NavigationContainer>
   );
-
-  return (
-    <ThemeProvider theme={THEME}>
-      <Home></Home>
-    </ThemeProvider>
-  );
-
 }
