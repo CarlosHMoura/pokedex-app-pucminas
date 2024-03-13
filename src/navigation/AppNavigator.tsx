@@ -1,8 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import {Home} from "../screens/home";
-import {PokemonList} from "../screens/PokemonList";
+import {Home} from "../screens/Home";
+import { PokemonListScreen } from "../screens/PokemonListScreen";
 
 const Stack = createStackNavigator();
 
@@ -15,8 +15,9 @@ export default function AppNavigator() {
                 options={{ headerShown: false }} />
             <Stack.Screen 
                 name="PokemonList" 
-                component={PokemonList}
+                component={PokemonListScreen}
                 options={{ headerTitle: "Todos os Pokémons" }} />
         </Stack.Navigator>
     );
 }
+ 

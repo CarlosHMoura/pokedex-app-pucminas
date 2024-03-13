@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { Container, Header, MainIcon, Title } from "./styles";
+
 import { Input } from "../../components/Inputs";
 import { UserButton } from "../../components/UserButton";
 import { Button } from "../../components/Button";
