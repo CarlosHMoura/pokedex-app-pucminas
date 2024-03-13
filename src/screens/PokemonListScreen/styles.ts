@@ -30,7 +30,7 @@ export const ListItem = styled(TouchableOpacity)`
     z-index: 1;
     align-self: center;
 `;
-  
+
 export const Text = styled.Text`
     font-size: 18px;
     color: ${theme.colors.darkGrey};

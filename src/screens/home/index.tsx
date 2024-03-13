@@ -3,16 +3,15 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import { Container, Header, MainIcon, Title } from "./styles";
 
-import { Input } from "../../components/Inputs";
+import { PokemonSearchInput } from "../../components/PokemonSearchInput";
 import { UserButton } from "../../components/UserButton";
 import { Button } from "../../components/Button";
-import { SimpleModal } from "../../components/Modal";
 
 import pokeballIcon from "../../assets/pokeball-icon.png";
 
 type RootStackParamList = {
     Home: undefined;
-    PokemonList: undefined; // Add parameters here if PokemonList screen takes any
+    PokemonList: undefined; 
 };
 
 type NavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
@@ -44,13 +43,10 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
                 ></MainIcon>
                 <Title>Pokedex</Title>
 
-                <Input placeholder="Pesquisar Pokemon..."></Input>
-                
-                <Button onPress={handleToggleModal} title="Modal test" />
+                <PokemonSearchInput placeholder="Pesquisar Pokemon..."></PokemonSearchInput>
+
                 <Button onPress={() => navigation.navigate('PokemonList')} title="Listar Todos os Pokémons" />
             </Header>
-
-            <SimpleModal visible={modalVisible} onClose={handleToggleModal} />
         </Container>
     );
 };

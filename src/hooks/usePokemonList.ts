@@ -15,7 +15,7 @@ export const usePokemonList = () => {
         try {
             const response = await axios.get<ApiResponse>(`https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${offset}`);
             const results = response.data.results.map((pokemon: Pokemon) => {
-                const index = pokemon.url.split('/').slice(-2, -1)[0];
+                const index = pokemon.url.split('/').slice(-2, -1)[0]; // Changed from pokemon.indexUrl to pokemon.url
                 const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index}.png`;
                 return { ...pokemon, imageUrl };
             });

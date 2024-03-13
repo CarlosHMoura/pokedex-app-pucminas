@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-
+import React from 'react';
 import { Modal, Text } from 'react-native';
+
 import { ModalContainer, 
   ModalContent, 
   CloseButton, 
@@ -11,12 +11,15 @@ import { ModalContainer,
 import searchIcon from "../../assets/arrow-icon.png";
 import starIcon0 from "../../assets/star-0-icon.png";
 
+import { Pokemon } from "../../interfaces/Pokemon";
+
 interface SimpleModalProps {
   visible: boolean;
   onClose: () => void;
+  data: Pokemon | null;
 }
 
-export function SimpleModal({ visible, onClose }: SimpleModalProps) {
+export function PokemonModalView({ visible, onClose, data }: SimpleModalProps) {
   return (
     <Modal
       transparent = {true}
@@ -27,8 +30,16 @@ export function SimpleModal({ visible, onClose }: SimpleModalProps) {
     >
       <ModalContainer>
         <ModalContent>
-          <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
-
+          {data ? (
+            <>
+              <Text>Name: {data.name}</Text>
+              <Text>Weight: {data.weight}</Text>
+              <Text>Base Experience: {data.base_experience}</Text>
+              {/* Add more fields as needed */}
+            </>
+          ) : (
+            <Text>No data</Text>
+          )}
           <CloseButton onPress={onClose}>
             <CloseButtonIcon source={searchIcon}></CloseButtonIcon>
           </CloseButton>
@@ -41,4 +52,3 @@ export function SimpleModal({ visible, onClose }: SimpleModalProps) {
     </Modal>
   );
 };
-
