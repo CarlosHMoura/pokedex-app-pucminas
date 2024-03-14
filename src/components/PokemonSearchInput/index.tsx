@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { TextInputProps, View } from "react-native"; 
+import { TextInputProps, View, Alert } from "react-native"; 
 
-import { getPokemonData } from "../../hooks/getPokemonData";
+import { getPokemonData } from "../../functions/getPokemonData";
 import { Pokemon } from "../../interfaces/Pokemon";
 import { PokemonModalView } from "../PokemonModalView";
 
@@ -15,14 +15,18 @@ export function PokemonSearchInput({ ...rest }: TextInputProps) {
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const handleInputChange = (text: string) => {
-        setInputValue(text);
+        setInputValue(text.toLowerCase());
     };
 
     const handleSubmit = () => {
-        getPokemonData(inputValue).then(data => {
-            setPokemonData(data);
-            setIsModalVisible(true);
-        });
+        getPokemonData(inputValue)
+            .then(data => {
+                setPokemonData(data);
+                setIsModalVisible(true);
+            })
+            .catch(error => {
+                Alert.alert('Error', error.message);
+            });
     };
 
     const handleCloseModal = () => {

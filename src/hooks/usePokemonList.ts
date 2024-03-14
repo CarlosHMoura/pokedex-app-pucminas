@@ -8,33 +8,39 @@ export const usePokemonList = () => {
     const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
     const [offset, setOffset] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [isLoadingMore, setIsLoadingMore] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const fetchData = async () => {
-        setLoading(true);
-        try {
-            const response = await axios.get<ApiResponse>(`https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${offset}`);
-            const results = response.data.results.map((pokemon: Pokemon) => {
-                const index = pokemon.url.split('/').slice(-2, -1)[0]; // Changed from pokemon.indexUrl to pokemon.url
-                const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index}.png`;
-                return { ...pokemon, imageUrl };
+    const fetchData = (offset: number) => {
+        setIsLoadingMore(true);
+        axios.get<ApiResponse>(`https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${offset}`)
+            .then(response => {
+                const results = response.data.results.map((pokemon: Pokemon) => {
+                    const index = pokemon.url.split('/').slice(-2, -1)[0];
+                    const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${index}.png`;
+                    return { ...pokemon, imageUrl };
+                });
+                setPokemonList(prevPokemonList => [...prevPokemonList, ...results]);
+                setError(null);
+            })
+            .catch(error => {
+                console.error('Error fetching Pokemon data:', error);
+                setError('Error fetching Pokemon data');
+            })
+            .finally(() => {
+                setLoading(false);
+                setIsLoadingMore(false);
             });
-            setPokemonList(prevPokemonList => [...prevPokemonList, ...results]);
-            setError(null);
-        } catch (error) {
-            console.error('Error fetching Pokemon data:', error);
-            setError('Error fetching Pokemon data');
-        } finally {
-            setLoading(false);
-        }
     };
 
     useEffect(() => {
-        fetchData();
+        fetchData(offset);
     }, [offset]);
 
     const loadMore = () => {
-        setOffset(prevOffset => prevOffset + 20);
+        if (!isLoadingMore) {
+            setOffset(prevOffset => prevOffset + 20);
+        }
     };
 
     return { pokemonList, loading, error, loadMore };

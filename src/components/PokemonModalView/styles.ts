@@ -19,7 +19,7 @@ export const ModalContent = styled.View`
     elevation: 5;
     width: 90%;
     height: 90%;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     position: relative;
     z-index: 1;

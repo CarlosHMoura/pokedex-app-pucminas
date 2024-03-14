@@ -22,8 +22,10 @@ export const ListItem = styled(TouchableOpacity)`
     justify-content: flex-end;
     align-items: center;
     background-color: ${theme.colors.white};
-    padding: 20px;
-    margin: 10px;
+    padding: 5px;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
     border-radius: 40px;
     box-shadow: 0px 0px 5px ${theme.colors.darkGrey};
     elevation: 5;
@@ -39,10 +41,19 @@ export const Text = styled.Text`
     text-align: center;
 `;
 
+export const IndexText = styled.Text`
+    font-size: 14px;
+    color: ${theme.colors.lightGrey};
+    text-transform: capitalize;
+    text-align: center;
+    font-style: italic;
+`;
+
 export const Sprite = styled(Animatable.Image)`
     z-index: -1;
     width: 150px;
-    height: 100%;
+    height: 150px;
+    box-shadow: 0px 0px 5px ${theme.colors.darkGrey};
 `;
 
 export const ActivityIndicator = styled.ActivityIndicator`

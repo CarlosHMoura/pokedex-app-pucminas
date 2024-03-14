@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import { Container, Text, Sprite, ActivityIndicator, ListItem, AnimatableView } from "./styles";
+import { Container, Text, Sprite, ActivityIndicator, ListItem, AnimatableView, IndexText } from "./styles";
 
 import { usePokemonList } from "../../hooks/usePokemonList";
 
@@ -28,10 +28,12 @@ export const PokemonListScreen: React.FC = () => {
                         duration={1500}
                         delay={index * 150}>
                         <ListItem>
+                    
                         <Sprite source={{ uri: item.imageUrl }} 
                                 animation="zoomIn"
                         />
                         <Text>{item.name}</Text>
+                        <IndexText>#{index + 1}</IndexText>
                         </ListItem>
                     </AnimatableView>
                 )}

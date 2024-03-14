@@ -15,10 +15,17 @@ export function getPokemonData(name: string): Promise<Pokemon> {
                 moves: response.data.moves,
                 stats: response.data.stats,
                 types: response.data.types,
-                url: '',
-                imageUrl: '',
-                animatedImageUrl: ''
+                url: response.data.species.url,
+                imageUrl: response.data.sprites.front_default,
+                animatedImageUrl: response.data.sprites.versions['generation-v']['black-white'].animated.front_default,
             };
-        return data;
-    });
+            return data;
+        })
+        .catch(error => {
+            if (error.response && error.response.status === 404) {
+                throw new Error('Pokemon not found');
+            } else {
+                throw new Error('An error occurred while fetching the Pokemon data');
+            }
+        });
 }

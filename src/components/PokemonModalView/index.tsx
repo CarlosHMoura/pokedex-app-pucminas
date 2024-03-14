@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Text } from 'react-native';
+import { Modal, Text , Image} from 'react-native';
 
 import { ModalContainer, 
   ModalContent, 
@@ -32,7 +32,8 @@ export function PokemonModalView({ visible, onClose, data }: SimpleModalProps) {
         <ModalContent>
           {data ? (
             <>
-              <Text>Name: {data.name}</Text>
+              <Image source={{ uri: data.animatedImageUrl }} style={{ width: 128, height: 128 }} />
+              <Text>{data.name}</Text>
               <Text>Weight: {data.weight}</Text>
               <Text>Base Experience: {data.base_experience}</Text>
               {/* Add more fields as needed */}
