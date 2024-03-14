@@ -33,7 +33,7 @@ export const PokemonListScreen: React.FC = () => {
                                 animation="zoomIn"
                         />
                         <Text>{item.name}</Text>
-                        <IndexText>#{index + 1}</IndexText>
+                        <IndexText>#{item.id}</IndexText>
                         </ListItem>
                     </AnimatableView>
                 )}

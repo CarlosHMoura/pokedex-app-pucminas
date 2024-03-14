@@ -21,12 +21,6 @@ interface HomeProps {
 }
 
 export const Home: React.FC<HomeProps> = ({ navigation }) => {
-    const [modalVisible, setModalVisible] = useState(false);
-
-    const handleToggleModal = () => {
-        setModalVisible(!modalVisible);
-    };
-
     return (
         <Container>
             <Header>

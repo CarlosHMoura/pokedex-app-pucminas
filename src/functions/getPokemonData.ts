@@ -2,8 +2,13 @@ import axios from 'axios';
 
 import { Pokemon } from '../interfaces/Pokemon';
 
-export function getPokemonData(name: string): Promise<Pokemon> {
-    return axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+export function getPokemonData(name: string, index?: number): Promise<Pokemon> {
+    let url = `https://pokeapi.co/api/v2/pokemon/${name}`;
+    if (index !== undefined) {
+        url = `https://pokeapi.co/api/v2/pokemon/${index}`;
+    }
+
+    return axios.get(url)
         .then(response => {
             const data: Pokemon = {
                 name: response.data.name,

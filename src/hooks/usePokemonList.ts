@@ -17,8 +17,10 @@ export const usePokemonList = () => {
             .then(response => {
                 const results = response.data.results.map((pokemon: Pokemon) => {
                     const index = pokemon.url.split('/').slice(-2, -1)[0];
-                    const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${index}.png`;
-                    return { ...pokemon, imageUrl };
+                    pokemon.id = parseInt(index);
+                    pokemon.url = `https://pokeapi.co/api/v2/pokemon/${index}`;
+                    pokemon.imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${index}.png`;
+                    return { ...pokemon };
                 });
                 setPokemonList(prevPokemonList => [...prevPokemonList, ...results]);
                 setError(null);
