@@ -6,7 +6,9 @@ import { ModalContainer,
   CloseButton, 
   CloseButtonIcon, 
   FavoriteButton,
-  FavoriteButtonIcon } from './styles';
+  FavoriteButtonIcon, 
+  PokemonSprite,
+  PokemonSpriteBackground} from './styles';
 
 import searchIcon from "../../assets/arrow-icon.png";
 import starIcon0 from "../../assets/star-0-icon.png";
@@ -32,11 +34,23 @@ export function PokemonModalView({ visible, onClose, data }: SimpleModalProps) {
         <ModalContent>
           {data ? (
             <>
-              <Image source={{ uri: data.animatedImageUrl }} style={{ width: 128, height: 128 }} />
+              <Text>#{data.id}</Text>
+              <Text>{data.types.map((type, index) => <Text key={index}>{type.type.name}</Text>)}</Text>
+              <PokemonSpriteBackground background-color="#111111"> 
+                <PokemonSprite source={{ uri: data.animatedImageUrl }} />
+              </PokemonSpriteBackground>
+              
               <Text>{data.name}</Text>
+
               <Text>Weight: {data.weight}</Text>
+              <Text>Height: {data.height}</Text>
+
+              
               <Text>Base Experience: {data.base_experience}</Text>
-              {/* Add more fields as needed */}
+              <Text>Abilities: {data.abilities.map((ability, index) => <Text key={index}>{ability.ability.name}</Text>)}</Text>
+              <Text>Stats: {data.stats.map((stat, index) => <Text key={index}>{stat.stat.name}: {stat.base_stat}</Text>)}</Text>
+              <Text>Moves: {data.moves.map((move, index) => <Text key={index}>{move.move.name}</Text>)}</Text>
+
             </>
           ) : (
             <Text>No data</Text>

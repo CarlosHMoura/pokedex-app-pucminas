@@ -50,3 +50,14 @@ export const FavoriteButtonIcon = styled.Image`
     height: 40px;
     opacity: 0.5;
 `;
+
+export const PokemonSprite = styled.Image`
+    width: 150px;
+    height: 150px;
+    
+`;
+
+export const PokemonSpriteBackground = styled.View`
+    z-index: -1;
+    border-radius: 100px;
+`;
