@@ -38,7 +38,7 @@ export const PokemonListScreen: React.FC = () => {
         <Container>
             <FlatList
                 data={pokemonList}
-                keyExtractor={(item) => item.id.toString()}
+                keyExtractor={(item, index) => `${item.id.toString()}:${index}`}
                 numColumns={2} 
                 renderItem={({ item }) => (
                     <AnimatableView 
@@ -46,9 +46,7 @@ export const PokemonListScreen: React.FC = () => {
                         duration={1500}
                         delay={item.id * 150}>
                         <ListItem onPress={() => handlePokemonSelection(item.name)}>
-                            <Sprite source={{ uri: item.imageUrl }} 
-                                    animation="zoomIn"
-                            />
+                            <Sprite source={{ uri: item.imageUrl }} />
                             <Text>{item.name}</Text>
                             <IndexText>#{item.id}</IndexText>
                         </ListItem>

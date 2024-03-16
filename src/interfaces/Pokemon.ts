@@ -13,6 +13,6 @@ export interface Pokemon {
     abilities: Array<{ ability: { name: string } }>;
 }
 
-export interface ApiResponse {
+export interface PokemonList {
     results: Pokemon[];
 }

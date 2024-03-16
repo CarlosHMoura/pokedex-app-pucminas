@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import axios from 'axios';
 
-import { Pokemon, ApiResponse } from '../interfaces/Pokemon';
+import { Pokemon, PokemonList } from '../interfaces/Pokemon';
 
 export const usePokemonList = () => {
     const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
@@ -13,7 +13,7 @@ export const usePokemonList = () => {
 
     const fetchData = (offset: number) => {
         setIsLoadingMore(true);
-        axios.get<ApiResponse>(`https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${offset}`)
+        axios.get<PokemonList>(`https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${offset}`)
             .then(response => {
                 const results = response.data.results.map((pokemon: Pokemon) => {
                     const index = pokemon.url.split('/').slice(-2, -1)[0];
@@ -27,7 +27,6 @@ export const usePokemonList = () => {
             })
             .catch(error => {
                 console.error('Error fetching Pokemon data:', error);
-                setError('Error fetching Pokemon data');
             })
             .finally(() => {
                 setLoading(false);

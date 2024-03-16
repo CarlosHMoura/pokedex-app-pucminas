@@ -1,14 +1,22 @@
-import React from 'react';
-import { Modal, Text , Image} from 'react-native';
+import React from "react";
+import { View, Modal } from "react-native";
 
-import { ModalContainer, 
-  ModalContent, 
-  CloseButton, 
-  CloseButtonIcon, 
+import {
+  ModalContainer,
+  ModalContent,
+  CloseButton,
+  CloseButtonIcon,
   FavoriteButton,
-  FavoriteButtonIcon, 
+  FavoriteButtonIcon,
+  Scroll,
   PokemonSprite,
-  PokemonSpriteBackground} from './styles';
+  IndexText,
+  PokemonTitleText,
+  Text,
+  BoldText,
+  Tag,
+  TagText,
+} from "./styles";
 
 import searchIcon from "../../assets/arrow-icon.png";
 import starIcon0 from "../../assets/star-0-icon.png";
@@ -24,7 +32,7 @@ interface SimpleModalProps {
 export function PokemonModalView({ visible, onClose, data }: SimpleModalProps) {
   return (
     <Modal
-      transparent = {true}
+      transparent={true}
       animationType="fade"
       statusBarTranslucent={true}
       visible={visible}
@@ -34,27 +42,55 @@ export function PokemonModalView({ visible, onClose, data }: SimpleModalProps) {
         <ModalContent>
           {data ? (
             <>
-              <Text>#{data.id}</Text>
-              <Text>{data.types.map((type, index) => <Text key={index}>{type.type.name}</Text>)}</Text>
-              <PokemonSpriteBackground background-color="#111111"> 
-                <PokemonSprite source={{ uri: data.animatedImageUrl }} />
-              </PokemonSpriteBackground>
-              
-              <Text>{data.name}</Text>
+              <IndexText>#{data.id}</IndexText>
 
-              <Text>Weight: {data.weight}</Text>
-              <Text>Height: {data.height}</Text>
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+                {data.types.map((type, index) => (
+                  <Tag>
+                    <TagText key={index}>{type.type.name}</TagText>
+                  </Tag>
+                ))}
+              </View>
 
-              
-              <Text>Base Experience: {data.base_experience}</Text>
-              <Text>Abilities: {data.abilities.map((ability, index) => <Text key={index}>{ability.ability.name}</Text>)}</Text>
-              <Text>Stats: {data.stats.map((stat, index) => <Text key={index}>{stat.stat.name}: {stat.base_stat}</Text>)}</Text>
-              <Text>Moves: {data.moves.map((move, index) => <Text key={index}>{move.move.name}</Text>)}</Text>
+              <PokemonSprite source={{ uri: data.animatedImageUrl }} />
+              <PokemonTitleText>{data.name}</PokemonTitleText>
 
+              <Scroll>
+                <BoldText>Features</BoldText>
+                <Text>
+                  Weight: {data.weight / 10} kg / Height: {data.height / 10} m
+                </Text>
+                <Text>Base Experience: {data.base_experience}</Text>
+
+                <BoldText>Stats</BoldText>
+                {data.stats.map((stat, index) => (
+                  <View key={index}>
+                    <Text>
+                      {" "}
+                      {stat.stat.name} : {stat.base_stat}
+                    </Text>
+                  </View>
+                ))}
+
+                <View>
+                  <BoldText>Abilities</BoldText>
+                  {data.abilities.map((ability, index) => (
+                    <Text key={index}>{ability.ability.name}</Text>
+                  ))}
+                </View>
+
+                <View>
+                  <BoldText>Moves</BoldText>
+                  {data.moves.map((move, index) => (
+                    <Text key={index}>{move.move.name}</Text>
+                  ))}
+                </View>
+
+                <BoldText>Evolutions</BoldText>
+              </Scroll>
             </>
-          ) : (
-            <Text>No data</Text>
-          )}
+          ) : null}
+
           <CloseButton onPress={onClose}>
             <CloseButtonIcon source={searchIcon}></CloseButtonIcon>
           </CloseButton>
@@ -66,4 +102,4 @@ export function PokemonModalView({ visible, onClose, data }: SimpleModalProps) {
       </ModalContainer>
     </Modal>
   );
-};
+}

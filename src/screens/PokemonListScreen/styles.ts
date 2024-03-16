@@ -47,13 +47,14 @@ export const IndexText = styled.Text`
     text-transform: capitalize;
     text-align: center;
     font-style: italic;
+    position: absolute;
+    top: 0px;
 `;
 
-export const Sprite = styled(Animatable.Image)`
+export const Sprite = styled.Image`
     z-index: -1;
     width: 150px;
     height: 150px;
-    box-shadow: 0px 0px 5px ${theme.colors.darkGrey};
 `;
 
 export const ActivityIndicator = styled.ActivityIndicator`
