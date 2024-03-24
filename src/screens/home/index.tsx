@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { Container, Header, MainIcon, Title } from "./styles";

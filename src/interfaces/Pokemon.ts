@@ -1,18 +1,12 @@
 export interface Pokemon {
     name: string;
     id: number;
-    url: string;
-    imageUrl: string;
-    animatedImageUrl: string;
+    urlImage: string;
     weight: number;
     height: number;
-    base_experience: number;
-    types: Array<{ type: { name: string } }>;
-    moves: Array<{ move: { name: string } }>;
-    stats: Array<{ base_stat: number, stat: { name: string } }>;
-    abilities: Array<{ ability: { name: string } }>;
-}
-
-export interface PokemonList {
-    results: Pokemon[];
+    evolutions: Array<{ name: string,  urlImage: string }>;
+    types: Array<{ name: string }>;
+    moves: Array<{ name: string }>;
+    stats: Array<{ name: string,  baseStat: number }>;
+    abilities: Array<{ name: string }>;
 }

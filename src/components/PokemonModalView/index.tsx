@@ -47,12 +47,12 @@ export function PokemonModalView({ visible, onClose, data }: SimpleModalProps) {
               <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                 {data.types.map((type, index) => (
                   <Tag>
-                    <TagText key={index}>{type.type.name}</TagText>
+                    <TagText key={index}>{type.name}</TagText>
                   </Tag>
                 ))}
               </View>
 
-              <PokemonSprite source={{ uri: data.animatedImageUrl }} />
+              <PokemonSprite source={{ uri: data.urlImage }} />
               <PokemonTitleText>{data.name}</PokemonTitleText>
 
               <Scroll>
@@ -60,14 +60,13 @@ export function PokemonModalView({ visible, onClose, data }: SimpleModalProps) {
                 <Text>
                   Weight: {data.weight / 10} kg / Height: {data.height / 10} m
                 </Text>
-                <Text>Base Experience: {data.base_experience}</Text>
 
                 <BoldText>Stats</BoldText>
                 {data.stats.map((stat, index) => (
                   <View key={index}>
                     <Text>
                       {" "}
-                      {stat.stat.name} : {stat.base_stat}
+                      {stat.name} : {stat.baseStat}
                     </Text>
                   </View>
                 ))}
@@ -75,14 +74,14 @@ export function PokemonModalView({ visible, onClose, data }: SimpleModalProps) {
                 <View>
                   <BoldText>Abilities</BoldText>
                   {data.abilities.map((ability, index) => (
-                    <Text key={index}>{ability.ability.name}</Text>
+                    <Text key={index}>{ability.name}</Text>
                   ))}
                 </View>
 
                 <View>
                   <BoldText>Moves</BoldText>
                   {data.moves.map((move, index) => (
-                    <Text key={index}>{move.move.name}</Text>
+                    <Text key={index}>{move.name}</Text>
                   ))}
                 </View>
 

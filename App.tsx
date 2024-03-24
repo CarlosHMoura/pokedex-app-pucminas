@@ -1,11 +1,15 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import AppNavigator from './src/navigation/AppNavigator';
+import { NavigationContainer } from "@react-navigation/native";
+import { PokemonProvider } from "./src/contexts/PokemonContext";
+
+import AppNavigator from "./src/navigation/AppNavigator";
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <AppNavigator />
-    </NavigationContainer>
+    <PokemonProvider>
+      <NavigationContainer>
+        <AppNavigator />
+      </NavigationContainer>
+    </PokemonProvider>
   );
 }

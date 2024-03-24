@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { Pokemon } from '../interfaces/Pokemon';
+import { Pokemon } from "../interfaces/Pokemon";
 
 export function getPokemonData(name: string, index?: number): Promise<Pokemon> {
     let url = `https://pokeapi.co/api/v2/pokemon/${name}`;
@@ -12,17 +12,15 @@ export function getPokemonData(name: string, index?: number): Promise<Pokemon> {
         .then(response => {
             const data: Pokemon = {
                 name: response.data.name,
-                weight: response.data.weight,
-                abilities: response.data.abilities,
-                base_experience: response.data.base_experience,
-                height: response.data.height,
                 id: response.data.id,
-                moves: response.data.moves,
-                stats: response.data.stats,
-                types: response.data.types,
-                url: response.data.species.url,
-                imageUrl: response.data.sprites.front_default,
-                animatedImageUrl: response.data.sprites.versions['generation-v']['black-white'].animated.front_default,
+                urlImage: response.data.sprites.front_default,
+                weight: response.data.weight,
+                height: response.data.height,
+                evolutions: [],
+                types: response.data.types.map((type: any) => ({ name: type.type.name })),
+                moves: response.data.moves.map((move: any) => ({ name: move.move.name })),
+                stats: response.data.stats.map((stat: any) => ({ name: stat.stat.name, baseStat: stat.base_stat })),    
+                abilities: response.data.abilities.map((ability: any) => ({ name: ability.ability.name })), 
             };
             return data;
         })

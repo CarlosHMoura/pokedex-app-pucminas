@@ -1,43 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { FlatList } from 'react-native';
-import { Container, Text, Sprite, ActivityIndicator, ListItem, AnimatableView, IndexText } from "./styles";
+import { Container, Text, Sprite, ListItem, AnimatableView, IndexText } from "./styles";
 
-import { usePokemonList } from "../../hooks/usePokemonList";
-
-import { getPokemonData } from "../../functions/getPokemonData";
+import { PokemonContext } from "../../contexts/PokemonContext";
 import { Pokemon } from "../../interfaces/Pokemon";
 import { PokemonModalView } from "../../components/PokemonModalView";
 
 export const PokemonListScreen: React.FC = () => {
-    const { pokemonList, loading, error, loadMore } = usePokemonList();
+    const pokemons = useContext(PokemonContext);
+
+    if (!pokemons || pokemons.length === 0) {
+        console.log('Pokemons is empty');
+    }
 
     const [pokemonData, setPokemonData] = useState<Pokemon | null>(null);
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const handlePokemonSelection = (pokemonName: string) => {
-        getPokemonData(pokemonName)
-            .then(data => {
-                setPokemonData(data);
-                setIsModalVisible(true);
-            })
+        const selectedPokemon = pokemons.find(pokemon => pokemon.name === pokemonName);
+        if (selectedPokemon) {
+            setPokemonData(selectedPokemon);
+            setIsModalVisible(true);
+        }
     }
 
     const handleCloseModal = () => {
         setIsModalVisible(false);
     };
 
-    if (loading) {
-        return <ActivityIndicator />;
-    }
-
-    if (error) {
-        return <Text>{error}</Text>;
-    }
-
     return (
         <Container>
             <FlatList
-                data={pokemonList}
+                data={pokemons}
                 keyExtractor={(item, index) => `${item.id.toString()}:${index}`}
                 numColumns={2} 
                 renderItem={({ item }) => (
@@ -46,14 +40,12 @@ export const PokemonListScreen: React.FC = () => {
                         duration={1500}
                         delay={item.id * 150}>
                         <ListItem onPress={() => handlePokemonSelection(item.name)}>
-                            <Sprite source={{ uri: item.imageUrl }} />
+                            <Sprite source={{ uri: item.urlImage }} />
                             <Text>{item.name}</Text>
                             <IndexText>#{item.id}</IndexText>
                         </ListItem>
                     </AnimatableView>
                 )}
-                onEndReached={loadMore}
-                onEndReachedThreshold={0.5}
             />
         {pokemonData && <PokemonModalView data={pokemonData} visible={isModalVisible} onClose={handleCloseModal} />}
         </Container>
