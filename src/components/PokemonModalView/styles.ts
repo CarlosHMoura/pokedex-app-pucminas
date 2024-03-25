@@ -17,7 +17,7 @@ export const ModalContainer = styled.View`
 
 export const ModalContent = styled.View`
     background-color: ${() => theme.colors.pureWhite};
-    border-radius: 30px;
+    border-radius: 15px;
     elevation: 5;
     width: 95%;
     height: 95%;
@@ -103,9 +103,14 @@ export const Text = styled.Text`
 `;
 
 export const BoldText = styled.Text`
-    font-size: 16px;
-    color: ${theme.colors.black};
-    margin: 20px;  
+    font-size: 14px;
+    color: ${theme.colors.darkGrey}; 
+    font-weight: bold;
+`;
+
+export const SubtitleText = styled.Text`
+    font-size: 18px;
+    color: ${theme.colors.black}; 
     font-weight: bold;
 `;
 
@@ -118,13 +123,42 @@ export const IndexText = styled.Text`
 
 //SCROLL -----------------------------------------------------------------------------------------------
 export const Scroll = styled.ScrollView`
-    width: 300px;
-    height: 250px;
-    margin-top: 20px;
+    margin: 10px;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 15px;
     background-color: ${theme.colors.white};
-    z-index: 1;
-    position: relative;
     align-self: start;
+`;
+export const ScrollContent = styled.View`
+    justify-content: center;
+    align-items: center;
+`;
+
+export const ScrollDivider = styled.View`
+    height: 1px;
+    width: 100%;
+    background-color: ${theme.colors.lightGrey};
+    margin: 10px;
+`;
+
+// EVOLUTIONS -----------------------------------------------------------------------------------------------
+export const EvolutionContainer = styled.View`
+    background-color: ${theme.colors.pureWhite};
+    border-radius: 50px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+`;
+
+export const EvolutionText = styled.Text`
+    font-size: 16px;
+    color: ${theme.colors.black};
+`;
+
+export const EvolutionSprite = styled.Image`
+    width: 70px;
+    height: 70px;
 `;

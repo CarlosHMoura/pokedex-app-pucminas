@@ -16,8 +16,14 @@ import {
   BoldText,
   Tag,
   TagText,
+  SubtitleText,
   PokemonHeader,
   PokemonHeaderInfo,
+  EvolutionContainer,
+  EvolutionSprite,
+  EvolutionText,
+  ScrollContent,
+  ScrollDivider,
 } from "./styles";
 
 import searchIcon from "../../assets/arrow-icon.png";
@@ -46,10 +52,11 @@ export function PokemonModalView({ visible, onClose, data }: SimpleModalProps) {
             <>
               <PokemonTitleText>{data.name}</PokemonTitleText>
               <PokemonHeader>
-                <PokemonSprite source={{ uri: data.urlImage }} 
+                <PokemonSprite
+                  source={{ uri: data.urlImage }}
                   animation="fadeIn"
                   duration={1500}
-                  ></PokemonSprite>
+                ></PokemonSprite>
 
                 <PokemonHeaderInfo>
                   <IndexText>#{data.id.toString().padStart(4, "0")}</IndexText>
@@ -62,40 +69,39 @@ export function PokemonModalView({ visible, onClose, data }: SimpleModalProps) {
                     ))}
 
                   <Text>
-                    <BoldText>Height:</BoldText> {data.height / 10} m
+                    <BoldText>Height</BoldText> {data.height / 10} m
                   </Text>
                   <Text>
-                    <BoldText>Weight:</BoldText> {data.weight / 10} kg
+                    <BoldText>Weight</BoldText> {data.weight / 10} kg
                   </Text>
                 </PokemonHeaderInfo>
               </PokemonHeader>
 
               <Scroll>
-                <Text>
-                  <BoldText>Abilities:</BoldText> {data.abilities.join(", ")}
-                </Text>
-                <Text>
-                  <BoldText>Moves:</BoldText> {data.moves.join(", ")}
-                </Text>
-                <Text>
-                  <BoldText>Stats:</BoldText>
-                </Text>
-                {data.stats.map((stat, index) => (
-                  <Text key={index}>
-                    <BoldText>{stat.name}:</BoldText> {stat.baseStat}
-                  </Text>
-                ))}
-                <Text>
-                  <BoldText>Evolutions:</BoldText>
-                </Text>
-                {data.evolutions.map((evolution, index) => (
-                  <Text key={index}>
-                    <BoldText>{evolution.name}</BoldText>
-                    <PokemonSprite
-                      source={{ uri: evolution.urlImage }}
-                    ></PokemonSprite>
-                  </Text>
-                ))}
+                <ScrollContent>
+                  <SubtitleText>Abilities</SubtitleText>
+                  <Text>{data.abilities.join(" • ")}</Text>
+                  <ScrollDivider></ScrollDivider>
+                  <SubtitleText>Moves</SubtitleText>
+                  <Text>{data.moves.join(" • ")}</Text>
+                  <ScrollDivider></ScrollDivider>
+                  <SubtitleText>Stats</SubtitleText>
+                  {data.stats.map((stat, index) => (
+                    <Text key={index}>
+                      <BoldText>{stat.name}:</BoldText> {stat.baseStat}
+                    </Text>
+                  ))}
+                  <ScrollDivider></ScrollDivider>
+                  <SubtitleText>Evolutions</SubtitleText>
+                  {data.evolutions.map((evolution, index) => (
+                    <EvolutionContainer>
+                      <EvolutionSprite
+                        source={{ uri: evolution.urlImage }}
+                      ></EvolutionSprite>
+                      <EvolutionText>{evolution.name}</EvolutionText>
+                    </EvolutionContainer>
+                  ))}
+                </ScrollContent>
               </Scroll>
             </>
           )}
