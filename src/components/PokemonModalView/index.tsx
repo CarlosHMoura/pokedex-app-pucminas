@@ -63,8 +63,8 @@ export function PokemonModalView({ visible, onClose, data }: SimpleModalProps) {
 
                   {data.types &&
                     data.types.map((type, index) => (
-                      <Tag>
-                        <TagText key={index}>{type}</TagText>
+                      <Tag key={index}>
+                        <TagText>{type}</TagText>
                       </Tag>
                     ))}
 
@@ -94,7 +94,7 @@ export function PokemonModalView({ visible, onClose, data }: SimpleModalProps) {
                   <ScrollDivider></ScrollDivider>
                   <SubtitleText>Evolutions</SubtitleText>
                   {data.evolutions.map((evolution, index) => (
-                    <EvolutionContainer>
+                    <EvolutionContainer key={index}>
                       <EvolutionSprite
                         source={{ uri: evolution.urlImage }}
                       ></EvolutionSprite>

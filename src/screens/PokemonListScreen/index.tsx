@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { FlatList } from "react-native";
+import React, { useState, useContext, useCallback } from "react";
+import { FlatList, Alert } from "react-native";
 import { Container, Text, Sprite, ListItem, AnimatableView, IndexText } from "./styles";
 
 import { PokemonContext } from "../../contexts/PokemonContext";
@@ -14,20 +14,33 @@ export const PokemonListScreen: React.FC = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [pokemonData, setPokemonData] = useState<Pokemon | null>(null);
 
-    const handlePokemonSelection = (pokemonName: string) => {
-        getPokemonData(pokemonName, pokemons)
-            .then(data => {
-                setPokemonData(data);
-                setIsModalVisible(true);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    }
+    const handlePokemonSelection = useCallback(async (pokemonName: string) => {
+        try {
+            const data = await getPokemonData(pokemonName, pokemons);
+            setPokemonData(data);
+            setIsModalVisible(true);
+        } catch (error) {
+            console.error(error);
+            Alert.alert('Error', 'Failed to fetch Pokemon data. Please try again.');
+        }
+    }, [pokemons]);
 
     const handleCloseModal = () => {
         setIsModalVisible(false);
     };
+
+    const renderItem = useCallback(({ item }: { item: Pokemon }) => (
+        <AnimatableView 
+            animation="slideInUp"
+            duration={1500}
+            delay={150}>
+            <ListItem onPress={() => handlePokemonSelection(item.name)}>
+                <Sprite source={{ uri: item.urlImage }} />
+                <Text>{item.name}</Text>
+                <IndexText>#{item.id}</IndexText>
+            </ListItem>
+        </AnimatableView>
+    ), [handlePokemonSelection]);
 
     return (
         <Container>
@@ -35,18 +48,7 @@ export const PokemonListScreen: React.FC = () => {
                 data={pokemons}
                 keyExtractor={(item, index) => `${item.id.toString()}:${index}`}
                 numColumns={2} 
-                renderItem={({ item }) => (
-                    <AnimatableView 
-                        animation="slideInUp"
-                        duration={1500}
-                        delay={item.id * 150}>
-                        <ListItem onPress={() => handlePokemonSelection(item.name)}>
-                            <Sprite source={{ uri: item.urlImage }} />
-                            <Text>{item.name}</Text>
-                            <IndexText>#{item.id}</IndexText>
-                        </ListItem>
-                    </AnimatableView>
-                )}
+                renderItem={renderItem}
             />
         {pokemonData && 
         <PokemonModalView 
