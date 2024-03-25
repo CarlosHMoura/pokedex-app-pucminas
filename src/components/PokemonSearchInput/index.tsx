@@ -18,7 +18,8 @@ export function PokemonSearchInput({ ...rest }: TextInputProps) {
     const pokemonContext = useContext(PokemonContext);
 
     const handleInputChange = (text: string) => {
-        setInputValue(text);
+        const capitalizedText = text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+        setInputValue(capitalizedText);
     };
 
     const handleSubmit = () => {
