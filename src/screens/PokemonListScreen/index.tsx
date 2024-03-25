@@ -3,25 +3,26 @@ import { FlatList } from "react-native";
 import { Container, Text, Sprite, ListItem, AnimatableView, IndexText } from "./styles";
 
 import { PokemonContext } from "../../contexts/PokemonContext";
+import { getPokemonData } from "../../functions/getPokemonData";
 import { Pokemon } from "../../interfaces/Pokemon";
+
 import { PokemonModalView } from "../../components/PokemonModalView";
 
 export const PokemonListScreen: React.FC = () => {
     const pokemons = useContext(PokemonContext);
 
-    if (!pokemons || pokemons.length === 0) {
-        console.log('Pokemons is empty');
-    }
-
-    const [pokemonData, setPokemonData] = useState<Pokemon | null>(null);
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [pokemonData, setPokemonData] = useState<Pokemon | null>(null);
 
     const handlePokemonSelection = (pokemonName: string) => {
-        const selectedPokemon = pokemons.find(pokemon => pokemon.name === pokemonName);
-        if (selectedPokemon) {
-            setPokemonData(selectedPokemon);
-            setIsModalVisible(true);
-        }
+        getPokemonData(pokemonName, pokemons)
+            .then(data => {
+                setPokemonData(data);
+                setIsModalVisible(true);
+            })
+            .catch(error => {
+                console.error(error);
+            });
     }
 
     const handleCloseModal = () => {
@@ -47,7 +48,11 @@ export const PokemonListScreen: React.FC = () => {
                     </AnimatableView>
                 )}
             />
-        {pokemonData && <PokemonModalView data={pokemonData} visible={isModalVisible} onClose={handleCloseModal} />}
+        {pokemonData && 
+        <PokemonModalView 
+        data={pokemonData} 
+        visible={isModalVisible} 
+        onClose={handleCloseModal} />}
         </Container>
     );
 };

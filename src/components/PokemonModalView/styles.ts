@@ -1,9 +1,10 @@
 import styled from "styled-components/native";
 import theme from "../../theme";
 
+import * as Animatable from "react-native-animatable";
 import { TouchableOpacity } from "react-native";
 
-//ModalBasis
+//MODAL -----------------------------------------------------------------------------------------------
 export const ModalContainer = styled.View`
     flex: 1;
     width: max-content;
@@ -11,19 +12,16 @@ export const ModalContainer = styled.View`
     height: 800px;
     justify-content: center;
     align-items: center;
+    margin-top: 25px;
 `;
 
 export const ModalContent = styled.View`
     background-color: ${() => theme.colors.pureWhite};
-    padding: 50px;
     border-radius: 30px;
     elevation: 5;
     width: 95%;
-    height: 90%;
-    justify-content: flex-start;
+    height: 95%;
     align-items: center;
-    position: relative;
-    z-index: 1;
 `;
 
 export const CloseButton = styled(TouchableOpacity)`
@@ -36,7 +34,7 @@ export const CloseButton = styled(TouchableOpacity)`
 export const CloseButtonIcon = styled.Image`
     width: 40px;
     height: 40px;
-    opacity: 0.5;
+    opacity: 0.7;
 `;
 
 export const FavoriteButton = styled(TouchableOpacity)`
@@ -49,16 +47,76 @@ export const FavoriteButton = styled(TouchableOpacity)`
 export const FavoriteButtonIcon = styled.Image`
     width: 40px;
     height: 40px;
-    opacity: 0.5;
+    opacity: 0.7;
 `;
-//PokemonModalView
-export const PokemonSprite = styled.Image`
-    width: 150px;
-    height: 150px;
-    margin: 10px;
-    padding: 5px;
+//POKEMON HEADER -----------------------------------------------------------------------------------------------
+export const PokemonSprite = styled(Animatable.Image)`
+    z-index: 2;
+    width: 200px;
+    height: 200px;
+    margin-left: 15px;
 `;
 
+export const PokemonTitleText = styled.Text`
+    font-size: 28px;
+    color: ${theme.colors.black};
+    font-weight: bold;
+    text-align: center;
+    margin: 10px;
+`;
+
+export const PokemonHeader = styled.View`
+    background-color: ${theme.colors.white};
+    width: 95%;
+    height: 30%;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+`;
+
+export const PokemonHeaderInfo = styled.View`
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+`;
+
+export const Tag = styled.View`
+    background-color: ${theme.colors.lightGrey};
+    border-radius: 10px;
+    padding: 1px 10px;
+    margin: 2px;    
+`;
+
+export const TagText = styled.Text`
+    font-size: 14px;
+    color: ${theme.colors.white};
+    text-transform: capitalize;
+    font-weight: bold;
+`;
+
+//TEXT -----------------------------------------------------------------------------------------------
+export const Text = styled.Text`
+    font-size: 14px;
+    color: ${theme.colors.darkGrey};
+    margin-bottom: 5px;
+`;
+
+export const BoldText = styled.Text`
+    font-size: 16px;
+    color: ${theme.colors.black};
+    margin: 20px;  
+    font-weight: bold;
+`;
+
+export const IndexText = styled.Text`
+    font-size: 16px;
+    color: ${theme.colors.lightGrey};
+    font-style: italic;
+    margin: 10px;
+`;
+
+//SCROLL -----------------------------------------------------------------------------------------------
 export const Scroll = styled.ScrollView`
     width: 300px;
     height: 250px;
@@ -68,59 +126,5 @@ export const Scroll = styled.ScrollView`
     background-color: ${theme.colors.white};
     z-index: 1;
     position: relative;
-`;
-
-//Tag
-export const Tag = styled.View`
-    background-color: ${theme.colors.lightGrey};
-    border-radius: 10px;
-    padding: 1px 15px;
-    align-items: center;
-    justify-content: center;
-    align-self: center;
-    align-content: center;
-    margin: 5px;
-`;
-
-export const TagText = styled.Text`
-    font-size: 14px;
-    color: ${theme.colors.white};
-    text-transform: justify-self;
-    text-transform: capitalize;
-    font-weight: bold;
-`;
-//Texts
-export const Text = styled.Text`
-    font-size: 14px;
-    color: ${theme.colors.darkGrey};
-    text-transform: justify-self;
-    text-transform: capitalize;
-    text-align: center;
-    margin-bottom: 5px;  
-`;
-
-export const BoldText = styled.Text`
-    font-size: 16px;
-    color: ${theme.colors.black};
-    text-transform: justify-self;
-    text-transform: capitalize;
-    text-align: center;
-    margin: 20px;  
-    font-weight: bold;
-`;
-
-export const IndexText = styled.Text`
-    font-size: 14px;
-    color: ${theme.colors.lightGrey};
-    text-transform: capitalize;
-    text-align: center;
-    font-style: italic;
-`;
-
-export const PokemonTitleText = styled.Text`
-    font-size: 24px;
-    color: ${theme.colors.black};
-    text-transform: capitalize;
-    font-weight: bold;
-    text-align: center;
+    align-self: start;
 `;
