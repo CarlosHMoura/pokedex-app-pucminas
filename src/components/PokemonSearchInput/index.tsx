@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { TextInputProps, View, Alert } from "react-native"; 
 
 import { getPokemonData } from "../../functions/getPokemonData";

@@ -1,12 +1,22 @@
-export interface Pokemon {
+export interface Stat {
     name: string;
+    baseStat: number;
+}
+
+export interface Evolution {
+    name: string;
+    urlImage: string;
+}
+
+export interface Pokemon {
     id: number;
     urlImage: string;
-    weight: number;
+    name: string;
+    types: string[];
     height: number;
-    evolutions: Array<{ name: string,  urlImage: string }>;
-    types: Array<{ name: string }>;
-    moves: Array<{ name: string }>;
-    stats: Array<{ name: string,  baseStat: number }>;
-    abilities: Array<{ name: string }>;
+    weight: number;
+    abilities: string[];
+    moves: string[];
+    stats: Stat[];
+    evolutions: Evolution[];
 }

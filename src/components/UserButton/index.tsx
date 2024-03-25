@@ -1,5 +1,5 @@
-import React from 'react';
-import {Container, Icon} from './styles';
+import React from "react";
+import {Container, Icon} from "./styles";
 
 import userIcon from "../../assets/user-icon.png";
 

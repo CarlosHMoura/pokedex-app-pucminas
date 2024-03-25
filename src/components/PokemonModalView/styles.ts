@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled from "styled-components/native";
 import theme from "../../theme";
 
 import { TouchableOpacity } from "react-native";

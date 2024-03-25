@@ -1,5 +1,5 @@
-import React from 'react';
-import {Container, Text} from './styles';
+import React from "react";
+import {Container, Text} from "./styles";
 
 interface ButtonProps {
   onPress: () => void;

@@ -21,7 +21,7 @@ import {
 import searchIcon from "../../assets/arrow-icon.png";
 import starIcon0 from "../../assets/star-0-icon.png";
 
-import { Pokemon } from "../../interfaces/Pokemon";
+import { Pokemon, Stat, Evolution } from "../../interfaces/Pokemon";
 
 interface SimpleModalProps {
   visible: boolean;
@@ -40,55 +40,32 @@ export function PokemonModalView({ visible, onClose, data }: SimpleModalProps) {
     >
       <ModalContainer>
         <ModalContent>
-          {data ? (
+          {data && (
             <>
               <IndexText>#{data.id}</IndexText>
-
-              <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-                {data.types.map((type, index) => (
-                  <Tag>
-                    <TagText key={index}>{type.name}</TagText>
-                  </Tag>
+              <Tag>
+                {data.types && data.types.map((type: string, index: number) => (
+                  <TagText key={index}>{type}</TagText>
                 ))}
-              </View>
-
-              <PokemonSprite source={{ uri: data.urlImage }} />
+              </Tag>
+              <PokemonSprite source={{ uri: data.urlImage }}></PokemonSprite>
               <PokemonTitleText>{data.name}</PokemonTitleText>
 
+
+              
               <Scroll>
                 <BoldText>Features</BoldText>
                 <Text>
-                  Weight: {data.weight / 10} kg / Height: {data.height / 10} m
+                  Weight: {data.weight} kg / Height: {data.height} m
                 </Text>
 
-                <BoldText>Stats</BoldText>
-                {data.stats.map((stat, index) => (
-                  <View key={index}>
-                    <Text>
-                      {" "}
-                      {stat.name} : {stat.baseStat}
-                    </Text>
-                  </View>
-                ))}
 
-                <View>
-                  <BoldText>Abilities</BoldText>
-                  {data.abilities.map((ability, index) => (
-                    <Text key={index}>{ability.name}</Text>
-                  ))}
-                </View>
-
-                <View>
-                  <BoldText>Moves</BoldText>
-                  {data.moves.map((move, index) => (
-                    <Text key={index}>{move.name}</Text>
-                  ))}
-                </View>
+              
 
                 <BoldText>Evolutions</BoldText>
               </Scroll>
             </>
-          ) : null}
+          )}
 
           <CloseButton onPress={onClose}>
             <CloseButtonIcon source={searchIcon}></CloseButtonIcon>

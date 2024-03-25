@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { FlatList } from 'react-native';
+import React, { useState, useContext } from "react";
+import { FlatList } from "react-native";
 import { Container, Text, Sprite, ListItem, AnimatableView, IndexText } from "./styles";
 
 import { PokemonContext } from "../../contexts/PokemonContext";
