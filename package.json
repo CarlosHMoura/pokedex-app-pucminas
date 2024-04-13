@@ -22,6 +22,7 @@
     "expo-font": "~11.10.2",
     "expo-splash-screen": "~0.26.4",
     "expo-status-bar": "~1.11.1",
+    "formik": "^2.4.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.73.4",
@@ -30,7 +31,8 @@
     "react-native-modal": "^13.0.1",
     "react-native-responsive-fontsize": "^0.5.1",
     "react-native-web": "~0.19.6",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
