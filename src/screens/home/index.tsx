@@ -12,6 +12,7 @@ import pokeballIcon from "../../assets/pokeball-icon.png";
 type RootStackParamList = {
     Home: undefined;
     PokemonList: undefined; 
+    UserScreen: undefined;
 };
 
 type NavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
@@ -24,7 +25,7 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
     return (
         <Container>
             <Header>
-                <UserButton onPress={() => console.log("UserButton!")} />
+                <UserButton onPress={() => navigation.navigate('UserScreen')} />
             
                 <MainIcon 
                     source={pokeballIcon} 
