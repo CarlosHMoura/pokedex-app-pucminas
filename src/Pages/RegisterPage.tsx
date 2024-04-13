@@ -1,83 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Register from '../components/Auth/Register';
 
-interface UserProfile {
-  username: string;
-  password: string;
-  fullName: string;
-  birthdate: Date;
-  email: string;
-  phoneNumber: string;
-  // Outros campos do perfil, se houver
-}
-
-const Register: React.FC<{
-  onRegister: (
-    username: string,
-    password: string,
-    fullName: string,
-    birthdate: Date,
-    email: string,
-    phoneNumber: string
-  ) => Promise<boolean>;
-}> = ({ onRegister }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [fullName, setFullName] = useState('');
-  const [birthdate, setBirthdate] = useState<Date | null>(null);
-  const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const success = await onRegister(username, password, fullName, birthdate!, email, phoneNumber);
-    if (success) {
-      // Lidar com o registro bem-sucedido, redirecionamento, etc.
-    } else {
-      // Lidar com falha de registro
-    }
+const RegisterPage: React.FC = () => {
+  const handleRegister = async (username: string, password: string) => {
+    // Implemente a lógica de registro aqui, como fazer uma requisição para o backend
+    // Retorna true se o registro for bem-sucedido e false se não for
+    return true; // Temporário, substitua pela lógica real de registro
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Full Name"
-        value={fullName}
-        onChange={(e) => setFullName(e.target.value)}
-      />
-      <input
-        type="date"
-        placeholder="Birthdate"
-        value={birthdate?.toISOString().split('T')[0] ?? ''}
-        onChange={(e) => setBirthdate(new Date(e.target.value))}
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Phone Number"
-        value={phoneNumber}
-        onChange={(e) => setPhoneNumber(e.target.value)}
-      />
-      <button type="submit">Register</button>
-    </form>
+    <div>
+      <h1>Página de Registro</h1>
+      <Register onRegister={handleRegister} />
+    </div>
   );
 };
 
-export default Register;
+export default RegisterPage;

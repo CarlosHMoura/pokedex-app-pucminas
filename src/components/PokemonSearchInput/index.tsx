@@ -44,15 +44,7 @@ export function PokemonSearchInput({ ...rest }: TextInputProps) {
             <SearchButton onPress={handleSubmit}>
                 <SearchButtonIcon source={searchIcon}></SearchButtonIcon>
             </SearchButton>
-            {pokemonData && (
-                <PokemonModalView
-                    visible={isModalVisible}
-                    onClose={handleCloseModal}
-                    data={pokemonData}
-                    isFavorite={/* Valor booleano indicando se o Pokémon é favorito */}
-                    onToggleFavorite={/* Função para lidar com a ação de favoritar/desfavoritar o Pokémon */}
-                />
-            )}
+            {pokemonData && <PokemonModalView data={pokemonData} visible={isModalVisible} onClose={handleCloseModal} />}
         </View>
     );
 } 

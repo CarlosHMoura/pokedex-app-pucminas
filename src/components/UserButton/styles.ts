@@ -6,12 +6,10 @@ export const Icon = styled.Image`
   width: 50px;
   height: 50px;
   opacity: 0.7;
-  margin-right: 10px; /* Adicione um espaçamento entre os ícones */
 `;
 
-export const Container = styled.View`
-  flex-direction: row; /* Alinhe os ícones horizontalmente */
-  padding: 5px 10px; /* Aumente o espaçamento interno */
+export const Container = styled(TouchableOpacity)`
+  padding: 5px 5px;
   position: absolute;
   top: 30px;
   left: 10px;

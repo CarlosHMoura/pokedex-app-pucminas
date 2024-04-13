@@ -1,6 +1,5 @@
 import React from "react";
 import { Modal } from "react-native";
-import { IconButton } from "react-native-paper"; // Importe o IconButton para usar o ícone de favoritos
 
 import {
   ModalContainer,
@@ -29,18 +28,16 @@ import {
 
 import searchIcon from "../../assets/arrow-icon.png";
 import starIcon0 from "../../assets/star-0-icon.png";
-import starIcon1 from "../../assets/star-1-icon.png"; // Ícone de favorito preenchido
+
 import { Pokemon } from "../../interfaces/Pokemon";
 
 interface SimpleModalProps {
   visible: boolean;
   onClose: () => void;
   data: Pokemon | null;
-  isFavorite: boolean; // Adicionamos um novo prop para indicar se o Pokémon é favorito
-  onToggleFavorite: () => void; // Adicionamos um novo prop para lidar com a ação de favoritar/desfavoritar o Pokémon
 }
 
-export function PokemonModalView({ visible, onClose, data, isFavorite, onToggleFavorite }: SimpleModalProps) {
+export function PokemonModalView({ visible, onClose, data }: SimpleModalProps) {
   return (
     <Modal
       transparent={true}
@@ -111,9 +108,8 @@ export function PokemonModalView({ visible, onClose, data, isFavorite, onToggleF
           <CloseButton onPress={onClose}>
             <CloseButtonIcon source={searchIcon}></CloseButtonIcon>
           </CloseButton>
-          {/* Ajustamos o botão de favoritos para alternar entre os ícones de favorito preenchido e vazio */}
-          <FavoriteButton onPress={onToggleFavorite}>
-            <FavoriteButtonIcon source={isFavorite ? starIcon1 : starIcon0}></FavoriteButtonIcon>
+          <FavoriteButton onPress={onClose}>
+            <FavoriteButtonIcon source={starIcon0}></FavoriteButtonIcon>
           </FavoriteButton>
         </ModalContent>
       </ModalContainer>

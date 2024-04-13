@@ -13,7 +13,6 @@ export const PokemonListScreen: React.FC = () => {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [pokemonData, setPokemonData] = useState<Pokemon | null>(null);
-    const [isFavorite, setIsFavorite] = useState(false); // Adicionamos um estado local para indicar se o Pokémon é favorito
 
     const handlePokemonSelection = useCallback(async (pokemonName: string) => {
         try {
@@ -25,10 +24,6 @@ export const PokemonListScreen: React.FC = () => {
             Alert.alert('Error', 'Failed to fetch Pokemon data. Please try again.');
         }
     }, [pokemons]);
-
-    const handleToggleFavorite = useCallback(() => {
-        setIsFavorite(!isFavorite); // Alternamos o estado de favorito ao pressionar o botão
-    }, [isFavorite]);
 
     const handleCloseModal = () => {
         setIsModalVisible(false);
@@ -55,14 +50,11 @@ export const PokemonListScreen: React.FC = () => {
                 numColumns={2} 
                 renderItem={renderItem}
             />
-            {pokemonData && 
-            <PokemonModalView 
-                data={pokemonData} 
-                visible={isModalVisible} 
-                onClose={handleCloseModal} 
-                isFavorite={isFavorite} // Passamos o estado de favorito para o modal
-                onToggleFavorite={handleToggleFavorite} // Passamos a função de alternar favorito para o modal
-            />}
+        {pokemonData && 
+        <PokemonModalView 
+        data={pokemonData} 
+        visible={isModalVisible} 
+        onClose={handleCloseModal} />}
         </Container>
     );
 };
