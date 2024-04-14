@@ -19,6 +19,7 @@ export const UserContainer = styled.View`
 `;
 
 export const UserItem = styled.View`
+    width: 80%;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -39,6 +40,7 @@ export const UserInput = styled.TextInput`
 export const Text = styled.Text`
     font-size: 14px;
     color: ${theme.colors.darkGrey};
+    align-self: flex-start;
 `;
 
 export const BoldText = styled.Text`
