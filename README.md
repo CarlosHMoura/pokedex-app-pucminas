@@ -7,4 +7,6 @@
 - `npm install @react-navigation/native`
 - `npm install @react-navigation/stack`
 - `npm install react-native-gesture-handler`
-- `npx expo install react-native-gesture-handler`
+- `npm install formik yup`
+- `npm install yup`
+- `npm install @react-native-async-storage/async-storage`

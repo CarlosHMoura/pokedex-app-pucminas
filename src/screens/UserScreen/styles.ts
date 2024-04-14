@@ -1,6 +1,13 @@
 import styled from "styled-components/native";
 import theme from "../../theme";
 
+export const View = styled.View`
+    width: 100%;
+    flex: 1;
+    justify-content: flex-start;
+    align-items: center;
+`;
+
 export const UserView = styled.View`
     width: 100%;
     flex: 1;
