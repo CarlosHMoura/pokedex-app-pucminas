@@ -13,6 +13,8 @@ import { View, UserView, FormContainer, FormItem, FormInput, Text, BoldText, Err
 export const UserScreen: React.FC = () => {
     const [user, setUser] = useState<User | null>(null);
     const [showForm, setShowForm] = useState(false);
+    const [initialValues, setInitialValues] = useState({ name: '', birthday: '', email: '', phone: '' });
+
 
     useEffect(() => {
         const loadUser = async () => {
@@ -34,8 +36,16 @@ export const UserScreen: React.FC = () => {
         setShowForm(false);
     };
 
+    const handleEdit = () => {
+        if (user) {
+            setInitialValues(user);
+        }
+        setUser(null);
+        setShowForm(true);
+    };
+
     const validationSchema = Yup.object().shape({
-        name: Yup.string().required('Apelido').min(6, 'Minímo 3 caracteres!').max(20, 'Máximo 20 caracteres!'),
+        name: Yup.string().required('Apelido').min(3, 'Minímo 3 caracteres!').max(20, 'Máximo 20 caracteres!'),
         birthday: Yup.date().required('Aniverdsário obrigatório!').typeError('Data inválida!'),
         email: Yup.string().required('Email obrigatório!').min(6, 'Minímo 6 digitos!').email('E-mail inválido!'),
         phone: Yup.string().required('Telefone obrigatório!').min(10, 'Minímo 10 digitos!').max(11, 'Máximo 11 digitos!')
@@ -49,7 +59,7 @@ export const UserScreen: React.FC = () => {
                     <Text>Aniversário: {user.birthday}</Text>
                     <Text>Email: {user.email}</Text>
                     <Text>Telefone: {user.phone}</Text>
-                    <Button onPress={() => setShowForm(true)} title="Editar perfil" />
+                    <Button onPress={handleEdit} title="Editar perfil" />
                     <Button onPress={handleClear} title="Limpar dados" />
                 </View>
             ) : (
@@ -57,7 +67,7 @@ export const UserScreen: React.FC = () => {
                     {!showForm && <Button onPress={() => setShowForm(true)} title="Criar um novo perfil de usuário" />}
                     {showForm && (
                         <Formik
-                            initialValues={{ name: '', birthday: '', email: '', phone: '' }}
+                            initialValues={initialValues}
                             validationSchema={validationSchema}
                             onSubmit={handleSubmit}
                         >
