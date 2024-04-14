@@ -1,38 +1,31 @@
 import styled from "styled-components/native";
 import theme from "../../theme";
 
-export const View = styled.View`
+export const UserScreenView = styled.View`
     width: 100%;
     flex: 1;
     justify-content: flex-start;
     align-items: center;
 `;
 
-export const UserView = styled.View`
-    width: 100%;
-    flex: 1;
-    justify-content: flex-start;
-    align-items: center;
-`;
-
-// FORM ------------------------------------------------------------------------------------------------------
-export const FormContainer = styled.View`
+export const UserContainer = styled.View`
     width: 95%;
     justify-content: center;
     align-items: center;
     padding: 10px;
+    margin: 10px;
     background-color : ${() => theme.colors.white};
     border-radius: 30px;
 `;
 
-export const FormItem = styled.View`
+export const UserItem = styled.View`
     flex-direction: row;
     justify-content: center;
     align-items: center;
     margin: 10px;
 `;
 
-export const FormInput = styled.TextInput`
+export const UserInput = styled.TextInput`
     align-items: center;
     width: 70%;
     height: 24px;
@@ -46,7 +39,6 @@ export const FormInput = styled.TextInput`
 export const Text = styled.Text`
     font-size: 14px;
     color: ${theme.colors.darkGrey};
-    margin-bottom: 5px;
 `;
 
 export const BoldText = styled.Text`
