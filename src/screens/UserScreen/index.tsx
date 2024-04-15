@@ -23,7 +23,7 @@ const validationSchema = Yup.object().shape({
         .min(3, "Minímo 3 caracteres!")
         .max(20, "Máximo 20 caracteres!"),
     birthday: Yup.date()
-        .required("Aniverdsário obrigatório!")
+        .required("Aniversário obrigatório!")
         .typeError("Data inválida!"),
     email: Yup.string()
         .required("Email obrigatório!")
